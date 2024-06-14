@@ -1,35 +1,29 @@
-'use client';
+'use client'
 
-import { CustomerField, InvoiceForm } from '@/app/lib/definitions';
-import {
-  CheckIcon,
-  ClockIcon,
-  CurrencyDollarIcon,
-  UserCircleIcon,
-} from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { Button } from '@/app/ui/button';
-import { updateInvoice } from '@/app/lib/actions';
-import { useFormState } from 'react-dom';
+import { updateInvoice } from '@/app/lib/actions'
+import type { CustomerField, InvoiceForm } from '@/app/lib/definitions'
+import { Button } from '@/app/ui/button'
+import { CheckIcon, ClockIcon, CurrencyDollarIcon, UserCircleIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link'
+import { useFormState } from 'react-dom'
 
 export default function EditInvoiceForm({
   invoice,
   customers,
 }: {
-  invoice: InvoiceForm;
-  customers: CustomerField[];
+  invoice: InvoiceForm
+  customers: CustomerField[]
 }) {
-  const initialState = { message: null, errors: {} };
-  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState);
-
+  const initialState = { message: null, errors: {} }
+  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id)
+  const [state, dispatch] = useFormState(updateInvoiceWithId, initialState)
 
   return (
     <form action={dispatch}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
-          <label htmlFor="customer" className="mb-2 block text-sm font-medium">
+          <label htmlFor="customer" className="mb-2 block font-medium text-sm">
             Choose customer
           </label>
           <div className="relative">
@@ -48,21 +42,20 @@ export default function EditInvoiceForm({
                 </option>
               ))}
             </select>
-            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
+            <UserCircleIcon className="-translate-y-1/2 pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] text-gray-500" />
           </div>
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.customerId &&
-              state.errors.customerId.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {state.errors?.customerId?.map((error: string) => (
+              <p className="mt-2 text-red-500 text-sm" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
         {/* Invoice Amount */}
         <div className="mb-4">
-          <label htmlFor="amount" className="mb-2 block text-sm font-medium">
+          <label htmlFor="amount" className="mb-2 block font-medium text-sm">
             Choose an amount
           </label>
           <div className="relative mt-2 rounded-md">
@@ -76,24 +69,21 @@ export default function EditInvoiceForm({
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
-              <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <CurrencyDollarIcon className="-translate-y-1/2 pointer-events-none absolute top-1/2 left-3 h-[18px] w-[18px] text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
           <div id="amount" aria-live="polite" aria-atomic="true">
-            {state.errors?.amount &&
-              state.errors.amount.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {state.errors?.amount?.map((error: string) => (
+              <p className="mt-2 text-red-500 text-sm" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
         {/* Invoice Status */}
         <fieldset>
-          <legend className="mb-2 block text-sm font-medium">
-            Set the invoice status
-          </legend>
+          <legend className="mb-2 block font-medium text-sm">Set the invoice status</legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
             <div className="flex gap-4">
               <div className="flex items-center">
@@ -107,7 +97,7 @@ export default function EditInvoiceForm({
                 />
                 <label
                   htmlFor="pending"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 font-medium text-gray-600 text-xs"
                 >
                   Pending <ClockIcon className="h-4 w-4" />
                 </label>
@@ -123,7 +113,7 @@ export default function EditInvoiceForm({
                 />
                 <label
                   htmlFor="paid"
-                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 text-xs font-medium text-white"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-green-500 px-3 py-1.5 font-medium text-white text-xs"
                 >
                   Paid <CheckIcon className="h-4 w-4" />
                 </label>
@@ -132,23 +122,22 @@ export default function EditInvoiceForm({
           </div>
         </fieldset>
         <div id="status" aria-live="polite" aria-atomic="true">
-            {state.errors?.status &&
-              state.errors.status.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
+          {state.errors?.status?.map((error: string) => (
+            <p className="mt-2 text-red-500 text-sm" key={error}>
+              {error}
+            </p>
+          ))}
+        </div>
       </div>
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/dashboard/invoices"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 font-medium text-gray-600 text-sm transition-colors hover:bg-gray-200"
         >
           Cancel
         </Link>
         <Button type="submit">Edit Invoice</Button>
       </div>
     </form>
-  );
+  )
 }

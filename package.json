@@ -1,0 +1,10 @@
+{
+  "name": "leaning",
+  "private": true,
+  "scripts": {
+    "lint": "biome check ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.1"
+  }
+}
