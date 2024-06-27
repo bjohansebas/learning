@@ -117,6 +117,16 @@ importers:
         specifier: ^5.2.0
         version: 5.3.1(@types/node@20.5.7)
 
+  midudev/react-2024/projects/04-react-prueba-tecnica:
+    dependencies:
+      '@vitejs/plugin-react':
+        specifier: ^4.3.1
+        version: 4.3.1(vite@5.3.1(@types/node@20.5.7))
+    devDependencies:
+      vite:
+        specifier: ^5.3.1
+        version: 5.3.1(@types/node@20.5.7)
+
   vercel/nextjs-14:
     dependencies:
       '@heroicons/react':
